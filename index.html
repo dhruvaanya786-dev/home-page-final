@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnX | Command Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="intro-overlay">
+        <canvas id="starfield"></canvas>
+        <div class="intro-content">
+            <div class="intro-x">X</div>
+            <div class="warp-text" id="intro-msg">Entering World of Coding</div>
+        </div>
+    </div>
+
+    <aside id="sidebar" class="sidebar">
+        <div onclick="openProfile()" class="profile-trigger" title="View Profile">JD</div>
+        
+        <nav class="nav-menu">
+            <div class="nav-icon active" onclick="closeOverlays()">
+                <i data-lucide="home"></i>
+                <span class="nav-label">Home</span>
+            </div>
+            
+            <div class="nav-icon" onclick="openPractice()">
+                <i data-lucide="code-2"></i>
+                <span class="nav-label">Practice</span>
+            </div>
+
+            <div class="nav-icon" onclick="openAchievements()">
+                <i data-lucide="award"></i>
+                <span class="nav-label">Badges</span>
+            </div>
+
+            <div class="nav-icon">
+                <i data-lucide="activity"></i>
+                <span class="nav-label">Status</span>
+            </div>
+        </nav>
+    </aside>
+
+    <main id="homepage">
+        <section class="hero-section">
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="badge-tag">LearnX Startup Engine</div>
+                    <h1 class="hero-text">Master the <span class="text-blue-500">Logic.</span></h1>
+                    <p class="text-xl text-gray-400">Welcome to the elite tier of coding. Adaptive paths, 3D achievements, and real-time mastery heatmaps.</p>
+                    <button class="btn-primary" onclick="openPractice()">Start Practicing</button>
+                </div>
+                <div class="flex justify-center">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" class="robot-float w-80">
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 px-12">
+            <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+                <div class="glass-panel">
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">Adaptive Learning</h3>
+                    <p class="text-gray-500 text-sm">The curriculum evolves based on your logic speed.</p>
+                </div>
+                <div class="glass-panel">
+                    <h3 class="text-xl font-bold text-purple-400 mb-2">3D Roadmaps</h3>
+                    <p class="text-gray-500 text-sm">Visualize your journey from Beginner to Pro.</p>
+                </div>
+                <div class="glass-panel">
+                    <h3 class="text-xl font-bold text-emerald-400 mb-2">Proof of Skill</h3>
+                    <p class="text-gray-500 text-sm">Earn immutable badges for every milestone.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="profile-overlay" class="overlay">
+        <div class="overlay-content max-w-4xl">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="text-3xl font-black uppercase tracking-tighter">Command Profile</h2>
+                <button onclick="closeOverlays()" class="close-btn"><i data-lucide="x"></i></button>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-panel text-center">
+                    <div class="w-24 h-24 bg-blue-600 rounded-3xl mx-auto mb-4 flex items-center justify-center text-3xl font-bold shadow-lg">JD</div>
+                    <h3 class="text-xl font-bold">John Doe</h3>
+                    <p class="text-blue-400 text-sm">@johndoe_dev</p>
+                    <div class="rank-tag mt-4">Pro Coder</div>
+                </div>
+                <div class="md:col-span-2 space-y-6">
+                    <div class="glass-panel">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-[10px] font-black uppercase text-gray-500 tracking-widest">Level 14 Mastery</span>
+                            <span class="text-xs font-bold text-blue-400">850 / 1000 XP</span>
+                        </div>
+                        <div class="xp-bg"><div class="xp-fill" style="width: 85%"></div></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass-panel p-4"><p class="text-xs text-gray-500 uppercase">Streak</p><h4 class="text-3xl font-black">🔥 14 Days</h4></div>
+                        <div class="glass-panel p-4"><p class="text-xs text-gray-500 uppercase">Achievements</p><h4 class="text-3xl font-black">🏆 03</h4></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="achievement-overlay" class="overlay">
+        <div class="overlay-content max-w-4xl">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="text-3xl font-black uppercase">Earned Badges</h2>
+                <button onclick="closeOverlays()" class="close-btn"><i data-lucide="x"></i></button>
+            </div>
+            <div class="grid grid-cols-3 gap-8 text-center">
+                <div class="badge-card">🚀<p class="text-sm font-bold mt-2">Star Voyager</p></div>
+                <div class="badge-card">🐍<p class="text-sm font-bold mt-2">Python Titan</p></div>
+                <div class="badge-card">🛡️<p class="text-sm font-bold mt-2">Logic Shield</p></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
